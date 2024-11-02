@@ -33,4 +33,18 @@ if (isset($_POST['delete-tarefa'])){
     header('Location: index.php');
     exit();
 }
+
+if (isset($_POST['edit-tarefa'])){
+    $tarefaId = mysqli_real_escape_string($conn,$_POST['tarefaId']);
+    $nome = mysqli_real_escape_string($conn, $_POST['txtNome']);
+    $descricao = mysqli_real_escape_string($conn, $_POST['txtDescricao']);
+    $data = mysqli_real_escape_string($conn, $_POST['txtDataLimite']);
+    $status = $_POST['txtStatus'];
+
+    $update_sql = " UPDATE tarefas SET nome = '{$nome}', descricao = '{$descricao}', data_limite = '{$data}', status = '{$status}' WHERE id = '{$tarefaId}' ";
+
+    mysqli_query($conn, $update_sql);
+    header('Location: index.php');
+    exit();
+}
 ?>

@@ -68,7 +68,9 @@ if (!isset($_GET['id'])){
                                     <option value="1">Fazendo</option>
                                     <option value="2">Feito!</option>
                                 </select>
-
+                            </div>
+                            <div class="mb-3">
+                                <button name="edit-tarefa" type="submit" class="btn btn-success float-end"><i class="bi bi-floppy2-fill"></i></button>
                             </div>
                             
 
