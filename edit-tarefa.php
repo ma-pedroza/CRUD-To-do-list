@@ -63,7 +63,6 @@ if (!isset($_GET['id'])){
                             <div class="mb-3">
                                 <label for="txtStatus">Status</label>
                                 <select name="txtStatus" id="txtStatus" class="form-control">
-                                    <option value="">Como está sua tarefa?</option>
                                     <option value="0">A fazer</option>
                                     <option value="1">Fazendo</option>
                                     <option value="2">Feito!</option>

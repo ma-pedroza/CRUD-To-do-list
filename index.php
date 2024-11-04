@@ -21,12 +21,12 @@ $tarefas = mysqli_query($conn, $sql);
             <div class="col-md-10">
                     <h1 class="text-center mb-5">To do list</h1>
                     <div class="d-flex justify-content-center align-items-center border rounded p-0">
-                        <span class="me-3">Adicionar Nova Tarefa</span>
+                        <span class="me-4">Adicionar Nova Tarefa</span>
                         <a href="create-tarefa.php" style="font-size: 2rem;"><i class="bi bi-patch-plus"></i></a>
                         
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover">
+                        <table class="table table-striped table-bordered table-hover table-sm">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -42,16 +42,31 @@ $tarefas = mysqli_query($conn, $sql);
                                     <tr>
                                         <td><?php echo $tarefa['id']; ?></td>
                                         <td><?php echo $tarefa['nome']; ?></td>
-                                        <td><?php echo $tarefa['descricao']; ?></td>
+                                        <td style="max-height: 10px; max-width: 100px; text-wrap: breakline; cursor:pointer " data-bs-toggle="modal" data-bs-target="#modal<?php echo $tarefa['id'];?>"><?php echo$tarefa['descricao']; ?>
+                                        <div class="modal fade" id="modal<?php echo$tarefa['id'];?>" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?php echo $tarefa['id'];?>" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4><?php echo$tarefa['nome'];?></h4>
+                                                        <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p><?php echo$tarefa['descricao'];?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                        
                                         <td><?php echo $tarefa['data_limite']; ?></td>
                                         <?php if ($tarefa['status'] == 0): ?>
-                                        <td class="bg-info"><?php echo "A fazer"; ?></td>
+                                        <td class="text-center"><span class="badge rounded-pill bg-primary">A fazer</span></td>
                                         <?php endif ?>
                                         <?php if ($tarefa['status'] == 1): ?>
-                                        <td class="bg-warning"><?php echo "Fazendo"; ?></td>
+                                        <td class="text-center"><span class="badge rounded-pill bg-warning">Fazendo</span></td>
                                         <?php endif ?>
                                         <?php if ($tarefa['status'] == 2): ?>
-                                        <td class="bg-success"><?php echo "Feito";?></td> 
+                                        <td class="text-center"><span class="badge rounded-pill bg-success">Feito!</span></td> 
                                         <?php endif ?>
                                         <td>
                                             <a href="edit-tarefa.php?id=<?=$tarefa['id']?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
