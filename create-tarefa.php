@@ -11,7 +11,8 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card bg-dark  text-white">
+
                     <div class="card-header">
                         <h4>
                             Criar Nova tarefa

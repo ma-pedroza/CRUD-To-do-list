@@ -34,7 +34,7 @@ if (!isset($_GET['id'])){
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card bg-dark text-white">
                     <div class="card-header">
                         <h4>
                             Editar tarefa
@@ -53,7 +53,7 @@ if (!isset($_GET['id'])){
                                 <input type="text" name="txtNome" id="txtNome" value="<?=$tarefa['nome']?>" class="form-control">
                             </div>
                             <div class="mb-3">  
-                                <label for="txtDescricao">Descricao</label>
+                                <label for="txtDescricao">Descriçao</label>
                                 <textarea name="txtDescricao" id="txtDescricao" class="form-control" rows="3"><?= $tarefa['descricao'] ?></textarea>
                             </div>
                             <div class="mb-3">

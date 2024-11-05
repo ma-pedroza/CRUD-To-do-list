@@ -20,15 +20,15 @@ $tarefas = mysqli_query($conn, $sql);
         <div class="row justify-content-center">
             <div class="col-md-10">
                     <h1 class="text-center mb-5">To do list</h1>
-                    <div class="d-flex justify-content-center align-items-center border rounded p-0">
+                    <div class="d-flex justify-content-center align-items-center border rounded p-0 bg-dark text-light">
                         <span class="me-4">Adicionar Nova Tarefa</span>
                         <a href="create-tarefa.php" style="font-size: 2rem;"><i class="bi bi-patch-plus"></i></a>
                         
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover table-sm">
+                        <table class="table table-striped table-bordered table-hover table-sm table-dark">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>Id</th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
@@ -39,18 +39,19 @@ $tarefas = mysqli_query($conn, $sql);
                             </thead>
                             <tbody>
                                 <?php foreach ($tarefas as $tarefa): ?>
-                                    <tr>
+                                    <tr class="text-center">
                                         <td><?php echo $tarefa['id']; ?></td>
                                         <td><?php echo $tarefa['nome']; ?></td>
-                                        <td style="max-height: 10px; max-width: 100px; text-wrap: breakline; cursor:pointer " data-bs-toggle="modal" data-bs-target="#modal<?php echo $tarefa['id'];?>"><?php echo$tarefa['descricao']; ?>
+                                        <td class="text-truncate" style="max-height: 10px; max-width: 200px; text-wrap: breakline; cursor:pointer " data-bs-toggle="modal" data-bs-target="#modal<?php echo $tarefa['id'];?>"><?php echo$tarefa['descricao']; ?>
                                         <div class="modal fade" id="modal<?php echo$tarefa['id'];?>" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?php echo $tarefa['id'];?>" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                            <div class="modal-lg modal-dialog modal-dialog-centered modal-dialog-scrollable " style="max-width: 600px;">
                                                 <div class="modal-content">
-                                                    <div class="modal-header">
+                                                    <div class="modal-header bg-dark text-white">
                                                         <h4><?php echo$tarefa['nome'];?></h4>
                                                         <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Fechar"></button>
                                                     </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body bg-dark text-white" style="overflow-y: auto;  max-height: 300px;">
+
                                                         <p><?php echo$tarefa['descricao'];?></p>
                                                     </div>
                                                 </div>
@@ -58,20 +59,20 @@ $tarefas = mysqli_query($conn, $sql);
                                         </div>
                                         </td>
                                         
-                                        <td><?php echo $tarefa['data_limite']; ?></td>
+                                        <td class="text-center"><?php echo $tarefa['data_limite']; ?></td>
                                         <?php if ($tarefa['status'] == 0): ?>
-                                        <td class="text-center"><span class="badge rounded-pill bg-primary">A fazer</span></td>
+                                        <td class="text-center "><span class="badge rounded-pill bg-primary">A fazer</span></td>
                                         <?php endif ?>
                                         <?php if ($tarefa['status'] == 1): ?>
-                                        <td class="text-center"><span class="badge rounded-pill bg-warning">Fazendo</span></td>
+                                        <td class="text-center "><span class="badge rounded-pill bg-warning">Fazendo</span></td>
                                         <?php endif ?>
                                         <?php if ($tarefa['status'] == 2): ?>
-                                        <td class="text-center"><span class="badge rounded-pill bg-success">Feito!</span></td> 
+                                        <td class="text-center "><span class="badge rounded-pill bg-success">Feito!</span></td> 
                                         <?php endif ?>
-                                        <td>
-                                            <a href="edit-tarefa.php?id=<?=$tarefa['id']?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                        <td class="text-center d-flex justify-content-center gap-3">
+                                            <a href="edit-tarefa.php?id=<?=$tarefa['id']?>" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></a>
                                             <form action="acoes.php" method="POST" class="d-inline">
-                                                <button onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')" name="delete-tarefa" type="submit" value="<?=$tarefa['id']?>" class="btn btn-danger"><i class="bi bi-file-earmark-x"></i></button>
+                                                <button onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')" name="delete-tarefa" type="submit" value="<?=$tarefa['id']?>" class="btn btn-danger btn-sm"><i class="bi bi-file-earmark-x"></i></button>
                                             </form>
                                         </td>
                                         
